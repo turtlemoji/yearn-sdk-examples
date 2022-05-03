@@ -1,5 +1,6 @@
 :root {
   --color-background: rgb(224, 234, 255);
+  --color-primary: rgb(6, 87, 249);
 }
 
 * {
@@ -30,7 +31,7 @@ button {
   border-radius: 0.8rem;
   padding: 0 0.8rem;
   background: var(--color-background);
-  color: rgb(6, 87, 249);
+  color: var(--color-primary);
   cursor: pointer;
   user-select: none;
   transition: filter 200ms ease-in-out;
@@ -97,7 +98,7 @@ section {
   min-height: 4rem;
 
   & > * {
-    margin: .5rem 0;
+    margin: 1rem 0;
     &:first-child, &:last-child {
       margin: 0 auto;
     }
@@ -106,4 +107,15 @@ section {
   p {
     margin: .5rem 0;
   }
+
+  .v-separator {
+    background-color: var(--color-primary);
+  }
+}
+
+.v-separator {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-background);
+  margin: .5rem 0;
 }

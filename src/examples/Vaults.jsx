@@ -42,9 +42,7 @@ const Vaults = () => {
                     Vault: {vault.metadata.displayName} ({vault.symbol})
                   </p>
                   <p>APY: {formatAPY(vault.metadata.apy.net_apy)}%</p>
-                  <p>
-                    ---------------------------------------------------------------------
-                  </p>
+                  <div className="v-separator"></div>
                 </div>
               );
             })}
