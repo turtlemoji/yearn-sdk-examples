@@ -3,7 +3,6 @@ import React, { useState } from "react";
 
 const Vaults = () => {
   const [loading, setLoading] = useState(false);
-  setLoading(false);
 
   return (
     <div>
