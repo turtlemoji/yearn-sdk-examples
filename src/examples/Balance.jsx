@@ -31,15 +31,18 @@ const Balance = () => {
         </button>
 
         <p>Balances:</p>
-        <div>
-          {balances?.map((b) => {
-            return (
-              <p key={b.address}>
-                {b.token.symbol} : {formatBalance(b.balance, b.token.decimals)}
-              </p>
-            );
-          })}
-        </div>
+        {!!balances?.length && (
+          <div className="scroll-list">
+            {balances?.map((b) => {
+              return (
+                <p key={b.address}>
+                  {b.token.symbol} :{" "}
+                  {formatBalance(b.balance, b.token.decimals)}
+                </p>
+              );
+            })}
+          </div>
+        )}
       </section>
     </div>
   );

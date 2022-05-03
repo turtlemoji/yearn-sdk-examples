@@ -14,9 +14,7 @@ const Vaults = () => {
 
       <section>
         <p>Get Vaults</p>
-        <button disabled={loading}>
-          {loading ? "Loading" : "Get Vitalik Balances"}
-        </button>
+        <button disabled={loading}>{loading ? "Loading" : "Get vaults"}</button>
       </section>
     </div>
   );
