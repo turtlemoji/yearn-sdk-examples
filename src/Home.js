@@ -4,7 +4,6 @@ const Home = () => (
   <div>
     <h2>Home</h2>
 
-    <p>Insert Examples intro desc </p>
     <p>
       All auto-generated documentation for the SDK can be found here:{" "}
       <a
@@ -15,6 +14,7 @@ const Home = () => (
         Documentation
       </a>
     </p>
+    <p>In this example, the SDK configuration and init is done on sdk.js</p>
   </div>
 );
 

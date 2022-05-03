@@ -24,22 +24,25 @@ const Balance = () => {
     <div>
       <h2>Balance</h2>
 
-      <p>Balance description</p>
+      <section>
+        <p>Get Account Balances</p>
+        <button onClick={getAccountBalances} disabled={loading}>
+          {loading ? "Loading" : "Get Vitalik Balances"}
+        </button>
 
-      <button onClick={getAccountBalances} disabled={loading}>
-        {loading ? "Loading" : "Get Vitalik Balances"}
-      </button>
+        <p>Balances:</p>
+        <div>
+          {balances?.map((b) => {
+            return (
+              <p key={b.address}>
+                {b.token.symbol} : {formatBalance(b.balance, b.token.decimals)}
+              </p>
+            );
+          })}
+        </div>
+      </section>
 
-      <p>Balances:</p>
-      <div>
-        {balances?.map((b) => {
-          return (
-            <p key={b.address}>
-              {b.token.symbol} : {formatBalance(b.balance, b.token.decimals)}
-            </p>
-          );
-        })}
-      </div>
+
     </div>
   );
 };
