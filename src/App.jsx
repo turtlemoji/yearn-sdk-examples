@@ -14,7 +14,7 @@ export default function App() {
     { to: "/balance", name: "Balances" },
     { to: "/deposit", name: "Deposit" },
     { to: "/withdraw", name: "Withdraw" },
-    { to: "/vaults", name: "Vaults" }
+    { to: "/vaults", name: "Vaults" },
   ];
   return (
     <Router>

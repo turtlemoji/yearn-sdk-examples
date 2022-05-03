@@ -9,7 +9,7 @@ const rpcUrl = `https://eth-mainnet.alchemyapi.io/v2/${CONSTANTS.ALCHEMY_KEY}`;
 
 // NOTE We create the yearnSdk instance giving the chain id and provider
 const yearnSdk = new Yearn(chainId, {
-  provider: new JsonRpcProvider(rpcUrl)
+  provider: new JsonRpcProvider(rpcUrl),
 });
 
 export default yearnSdk;

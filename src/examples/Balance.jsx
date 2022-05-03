@@ -41,8 +41,6 @@ const Balance = () => {
           })}
         </div>
       </section>
-
-
     </div>
   );
 };
