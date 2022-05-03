@@ -9,7 +9,7 @@ const Balance = () => {
   // Just vitalik account to search for tokens
   const account = "0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B";
 
-  const getBalances = async () => {
+  const getAccountBalances = async () => {
     setLoading(true);
     setBalances(await yearnSdk.tokens.balances(account));
     setLoading(false);
@@ -26,7 +26,7 @@ const Balance = () => {
 
       <p>Balance description</p>
 
-      <button onClick={getBalances} disabled={loading}>
+      <button onClick={getAccountBalances} disabled={loading}>
         {loading ? "Loading" : "Get Vitalik Balances"}
       </button>
 
