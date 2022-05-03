@@ -6,7 +6,7 @@ import Deposit from "./examples/Deposit";
 import Withdraw from "./examples/Withdraw";
 import Vaults from "./examples/Vaults";
 
-import "./styles.css";
+import "./styles.scss";
 
 export default function App() {
   const navLinks = [

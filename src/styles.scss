@@ -28,12 +28,13 @@ button {
   cursor: pointer;
   user-select: none;
   transition: filter 200ms ease-in-out;
-}
-button:hover {
-  filter: contrast(90%);
-}
-button:disabled {
-  opacity: 0.6;
+
+  &:hover {
+    filter: contrast(90%);
+  }
+  &:disabled {
+    opacity: 0.6;
+  }
 }
 
 .App {
@@ -42,25 +43,27 @@ button:disabled {
   font-family: sans-serif;
 }
 
+.content {
+  padding: 0 10px;
+}
+
 .sidenav {
   padding: 17px;
   background: #f4f7fb;
   flex-shrink: 0;
-}
-.sidenav ul {
-  display: flex;
-  flex-direction: column;
-  grid-gap: 0.6rem;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  color: black;
-}
-.sidenav .header {
-  margin-bottom: 2rem;
-  font-size: 2rem;
-}
 
-.content {
-  padding: 0 10px;
+  ul {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 0.6rem;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    color: black;
+  }
+
+  .header {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+  }
 }
