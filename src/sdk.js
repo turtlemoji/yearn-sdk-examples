@@ -1,5 +1,5 @@
 import { Yearn } from "@yfi/sdk";
-import CONSTANTS from "/src/constants";
+import CONSTANTS from "constants";
 import { JsonRpcProvider } from "@ethersproject/providers";
 
 // NOTE set network as ethereum
