@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import yearnSdk from "../sdk";
 
 const Balance = () => {
-  const [balances, setBalances] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [balances, setBalances] = useState([]);
 
   // Just vitalik account to search for tokens
   const account = "0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B";
@@ -19,6 +19,8 @@ const Balance = () => {
   const formatBalance = (balance, decimals) => {
     return ethers.utils.formatUnits(balance, decimals);
   };
+
+  useEffect(() => console.log("BALANCES UPDATED", balances), [balances]);
 
   return (
     <div>
@@ -35,10 +37,10 @@ const Balance = () => {
           <div className="scroll-list">
             {balances?.map((b) => {
               return (
-                <p key={b.address}>
+                <div key={b.address}>
                   {b.token.symbol} :{" "}
                   {formatBalance(b.balance, b.token.decimals)}
-                </p>
+                </div>
               );
             })}
           </div>
