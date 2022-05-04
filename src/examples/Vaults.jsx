@@ -7,6 +7,7 @@ const Vaults = () => {
 
   const getAllVaults = async () => {
     setLoading(true);
+    // Get All Vaults
     setVaults(await yearnSdk.vaults.get());
     setLoading(false);
   };

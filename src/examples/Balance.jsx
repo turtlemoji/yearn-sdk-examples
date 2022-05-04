@@ -11,6 +11,7 @@ const Balance = () => {
 
   const getAccountBalances = async () => {
     setLoading(true);
+    // Get all balances for account
     setBalances(await yearnSdk.tokens.balances(account));
     setLoading(false);
   };
