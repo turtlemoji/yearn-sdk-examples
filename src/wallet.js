@@ -6,14 +6,16 @@ async function initWallet() {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   // Prompt user for account connections
   await provider.send("eth_requestAccounts", []);
-  const signer = provider.getSigner();
+  const walletSigner = provider.getSigner();
 
-  // NOTE We set the SDK write provider as the new wallet provider
+  // NOTE We set the SDK write and read provider as the new wallet provider
+  // If not, the SDK will use the default provider which is the JSONRpc one
+  // And we will not be able to execute txs
   yearnSdk.context.setProvider({
     read: readProvider,
-    write: provider
+    write: provider,
   });
-  return signer;
+  return walletSigner;
 }
 
 export default initWallet;

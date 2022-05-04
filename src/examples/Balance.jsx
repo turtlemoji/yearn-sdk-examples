@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import yearnSdk from "../sdk";
+import initWallet from "../wallet";
 
 const Balance = () => {
   const [loading, setLoading] = useState(false);
+  const [vitalikBalances, setVitalikBalances] = useState([]);
   const [balances, setBalances] = useState([]);
 
   // Just vitalik account to search for tokens
   const account = "0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B";
 
-  const getAccountBalances = async () => {
+  const getVitalikBalances = async () => {
     setLoading(true);
     // Get all balances for account
-    setBalances(await yearnSdk.tokens.balances(account));
+    setVitalikBalances(await yearnSdk.tokens.balances(account));
+    setLoading(false);
+  };
+
+  const getYourBalances = async () => {
+    const wallet = await initWallet();
+    setLoading(true);
+    // Get all balances for account
+    setBalances(await yearnSdk.tokens.balances(await wallet.getAddress()));
     setLoading(false);
   };
 
@@ -21,22 +31,47 @@ const Balance = () => {
     return ethers.utils.formatUnits(balance, decimals);
   };
 
-  useEffect(() => console.log("BALANCES UPDATED", balances), [balances]);
+  useEffect(
+    () => console.log("VITALIK BALANCES UPDATED", vitalikBalances),
+    [vitalikBalances]
+  );
+  useEffect(() => console.log("YOUR BALANCES UPDATED", balances), [balances]);
 
   return (
     <div>
       <h2>Balance</h2>
 
       <section>
-        <p>Get Account Balances</p>
-        <button onClick={getAccountBalances} disabled={loading}>
+        <p>Get your Balances</p>
+        <button onClick={getYourBalances} disabled={loading}>
+          {loading ? "Loading" : "Get your Balances"}
+        </button>
+
+        <p>Your Balances:</p>
+        {!!balances?.length && (
+          <div className="scroll-list">
+            {balances?.map((b) => {
+              return (
+                <div key={b.address}>
+                  {b.token.symbol} :{" "}
+                  {formatBalance(b.balance, b.token.decimals)}
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </section>
+
+      <section>
+        <p>Get Vitalik Balances</p>
+        <button onClick={getVitalikBalances} disabled={loading}>
           {loading ? "Loading" : "Get Vitalik Balances"}
         </button>
 
         <p>Balances:</p>
-        {!!balances?.length && (
+        {!!vitalikBalances?.length && (
           <div className="scroll-list">
-            {balances?.map((b) => {
+            {vitalikBalances?.map((b) => {
               return (
                 <div key={b.address}>
                   {b.token.symbol} :{" "}
