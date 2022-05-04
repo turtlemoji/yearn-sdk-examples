@@ -29,6 +29,8 @@ const Deposit = () => {
     // User account address
     const accountAddress = await wallet.getAddress();
     // Deposit DAI to DAI or FTM to FTM
+
+    // NOTE The deposit will fail if amount > allowance (the token was not approved before)
     try {
       const tx = await yearnSdk.vaults.deposit(
         vaultAddress,
