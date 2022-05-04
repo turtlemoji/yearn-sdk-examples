@@ -24,7 +24,9 @@ export const App = () => {
 
   useEffect(() => {
     const init = async () => {
-      wallet = initWallet();
+      wallet = await initWallet();
+
+      console.log(wallet.getAddress());
     };
     init();
   }, []);
