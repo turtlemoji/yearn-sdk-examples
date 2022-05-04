@@ -76,16 +76,21 @@ const Deposit = () => {
     <div>
       <h2>Approve</h2>
 
-      <button onClick={approveDai} disabled={loading}>
-        {loading ? "Loading" : "Approve DAI"}
-      </button>
+      <section>
+        <p>Approve DAI permanently</p>
+        <button onClick={approveDai} disabled={loading}>
+          {loading ? "Loading" : "Approve DAI"}
+        </button>
+      </section>
 
       <h2>Deposit</h2>
 
-      <p>Deposit to 1 DAI to DAI vault</p>
-      <button onClick={depositToDaiVault} disabled={loading}>
-        {loading ? "Loading" : "Deposit DAI"}
-      </button>
+      <section>
+        <p>Deposit to 1 DAI to DAI vault</p>
+        <button onClick={depositToDaiVault} disabled={loading}>
+          {loading ? "Loading" : "Deposit DAI"}
+        </button>
+      </section>
     </div>
   );
 };
