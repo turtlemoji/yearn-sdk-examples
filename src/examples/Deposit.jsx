@@ -14,9 +14,9 @@ const Deposit = () => {
     // User account address
     const accountAddress = await wallet.getAddress();
     // DAI Vault address
-    const vaultAddress = "0xdA816459F1AB5631232FE5e97a05BBBb94970c95";
+    const vaultAddress = CONSTANTS.VAULT_ADDRESSES.DAI;
     // DAI Token address
-    const tokenAddress = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
+    const tokenAddress = CONSTANTS.TOKEN_ADDRESSES.DAI;
     // The amount to approve, in this case, we use the MAX_UINT256 constant to approve permanently
     const amount = CONSTANTS.MAX_UINT256;
     try {
@@ -38,12 +38,10 @@ const Deposit = () => {
     setLoading(true);
 
     const wallet = await initWallet();
-    let vaultAddress, tokenAddress;
-
     // DAI Vault address
-    vaultAddress = "0xdA816459F1AB5631232FE5e97a05BBBb94970c95";
+    const vaultAddress = CONSTANTS.VAULT_ADDRESSES.DAI;
     // DAI Token address
-    tokenAddress = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
+    const tokenAddress = CONSTANTS.TOKEN_ADDRESSES.DAI;
 
     // Amount to deposit (1 DAI or 1 FTM), we use ethers to format it
     const amount = ethers.utils.parseUnits("1", 18);
