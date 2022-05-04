@@ -25,7 +25,6 @@ const Vaults = () => {
       setLoading(false);
     } catch (error) {
       console.error(error);
-      alert(error);
       setLoading(false);
     }
   };
