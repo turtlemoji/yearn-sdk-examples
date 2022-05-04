@@ -43,7 +43,7 @@ const Deposit = () => {
     // DAI Token address
     const tokenAddress = CONSTANTS.TOKEN_ADDRESSES.DAI;
 
-    // Amount to deposit (1 DAI or 1 FTM), we use ethers to format it
+    // Amount to deposit (1 DAI), we use ethers to format it
     const amount = ethers.utils.parseUnits("1", 18);
     // Slippage tolerance (1%)
     const slippageTolerance = 0.01;
