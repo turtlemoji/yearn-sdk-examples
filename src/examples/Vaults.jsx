@@ -40,8 +40,7 @@ const Vaults = () => {
     <div>
       <h2>Vaults</h2>
 
-      <p>get vault metadata</p>
-      <p>get positions of user in vaults</p>
+      <p>TODO get positions of user in vaults</p>
 
       <section>
         <p>Get All Vaults</p>
@@ -72,6 +71,18 @@ const Vaults = () => {
         <button onClick={getDaiMetadata} disabled={loading}>
           {loading ? "Loading" : "Get Vault metadata"}
         </button>
+        {!!daiMetadata?.length && (
+          <div className="scroll-list">
+            {daiMetadata?.map((vault) => {
+              return (
+                <div key={vault.address}>
+                  <p>Metadata TODO</p>
+                  <div className="v-separator"></div>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </section>
     </div>
   );
