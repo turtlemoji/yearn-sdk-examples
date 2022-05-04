@@ -1,15 +1,35 @@
 import React, { useState, useEffect } from "react";
+import CONSTANTS from "../constants";
 import yearnSdk from "../sdk";
 
 const Vaults = () => {
   const [loading, setLoading] = useState(false);
   const [vaults, setVaults] = useState([]);
+  const [daiMetadata, setDaiMetadata] = useState({});
 
   const getAllVaults = async () => {
     setLoading(true);
     // Get All Vaults
     setVaults(await yearnSdk.vaults.get());
     setLoading(false);
+  };
+
+  // NOTE The metadata query requires to configure the SDK subgraph
+  const getDaiMetadata = async () => {
+    setLoading(true);
+    let daiMetadata;
+    try {
+      // Get DAI metadata
+      daiMetadata = await yearnSdk.vaults.metadataOf("", [
+        CONSTANTS.VAULT_ADDRESSES.DAI,
+      ]);
+      setVaults(daiMetadata);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      alert(error);
+      setLoading(false);
+    }
   };
 
   // Helper function to format apy
@@ -22,7 +42,6 @@ const Vaults = () => {
   return (
     <div>
       <h2>Vaults</h2>
-      <p>Insert Examples intro desc </p>
 
       <p>get vault metadata</p>
       <p>get positions of user in vaults</p>
@@ -49,6 +68,13 @@ const Vaults = () => {
             })}
           </div>
         )}
+      </section>
+
+      <section>
+        <p>Get DAI Vault Metadata</p>
+        <button onClick={getDaiMetadata} disabled={loading}>
+          {loading ? "Loading" : "Get Vault metadata"}
+        </button>
       </section>
     </div>
   );

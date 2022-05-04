@@ -30,6 +30,7 @@ const Deposit = () => {
       setLoading(false);
     } catch (error) {
       console.error(error);
+      alert(error);
       setLoading(false);
     }
   };
@@ -68,6 +69,7 @@ const Deposit = () => {
       setLoading(false);
     } catch (error) {
       console.error(error);
+      alert(error);
       setLoading(false);
     }
   };
