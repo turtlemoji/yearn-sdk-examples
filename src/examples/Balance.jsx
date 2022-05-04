@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { ethers } from "ethers";
 import yearnSdk from "../sdk";
-import initWallet from "../wallet";
+import WalletContext from "../wallet";
 
 const Balance = () => {
   const [loading, setLoading] = useState(false);
+  const wallet = useContext(WalletContext);
   const [vitalikBalances, setVitalikBalances] = useState([]);
   const [balances, setBalances] = useState([]);
 
@@ -19,7 +20,6 @@ const Balance = () => {
   };
 
   const getYourBalances = async () => {
-    const wallet = await initWallet();
     setLoading(true);
     // Get all balances for account
     setBalances(await yearnSdk.tokens.balances(await wallet.getAddress()));

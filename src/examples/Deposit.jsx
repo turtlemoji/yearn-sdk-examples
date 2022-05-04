@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { ethers } from "ethers";
 import yearnSdk from "../sdk";
-import initWallet from "../wallet";
+import WalletContext from "../wallet";
 
 const Deposit = () => {
   const [loading, setLoading] = useState(false);
 
   const depositToDaiVault = async () => {
-    const wallet = await initWallet();
+    const wallet = useContext(WalletContext);
     const chainId = (await wallet.provider.getNetwork()).chainId;
     let vaultAddress, tokenAddress;
     setLoading(true);
 
+    // NOTE Depending on chain we deposit to dai or to ftm
     if (chainId === 1) {
       // DAI vault address and token
       vaultAddress = "0xdA816459F1AB5631232FE5e97a05BBBb94970c95";
