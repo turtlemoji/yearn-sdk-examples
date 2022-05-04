@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import yearnSdk from "./sdk";
+import yearnSdk, { provider as readProvider } from "./sdk";
 
 async function initWallet() {
   await window.ethereum.request({ method: "eth_requestAccounts" });
@@ -10,7 +10,8 @@ async function initWallet() {
 
   // NOTE We set the SDK write provider as the new wallet provider
   yearnSdk.context.setProvider({
-    write: provider,
+    read: readProvider,
+    write: provider
   });
   return signer;
 }
