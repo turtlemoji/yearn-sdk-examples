@@ -17,13 +17,11 @@ const Vaults = () => {
   // NOTE The metadata query requires to configure the SDK subgraph
   const getDaiMetadata = async () => {
     setLoading(true);
-    let daiMetadata;
     try {
       // Get DAI metadata
-      daiMetadata = await yearnSdk.vaults.metadataOf("", [
-        CONSTANTS.VAULT_ADDRESSES.DAI,
-      ]);
-      setVaults(daiMetadata);
+      setDaiMetadata(
+        await yearnSdk.vaults.metadataOf("", [CONSTANTS.VAULT_ADDRESSES.DAI])
+      );
       setLoading(false);
     } catch (error) {
       console.error(error);
