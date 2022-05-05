@@ -7,7 +7,7 @@ import CONSTANTS from "../constants";
 const Deposit = () => {
   const [loading, setLoading] = useState(false);
 
-  const approveDai = async () => {
+  const approveDaiDeposit = async () => {
     setLoading(true);
 
     const wallet = await initWallet();
@@ -76,7 +76,7 @@ const Deposit = () => {
 
       <section>
         <p>Approve DAI permanently</p>
-        <button onClick={approveDai} disabled={loading}>
+        <button onClick={approveDaiDeposit} disabled={loading}>
           {loading ? "Loading" : "Approve DAI"}
         </button>
       </section>
