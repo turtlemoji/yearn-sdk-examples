@@ -107,7 +107,7 @@ const Vaults = () => {
             {supportedTokens?.map((token) => {
               return (
                 <div key={token.address}>
-                  <p>token</p>
+                  <p>{token.symbol}</p>
                   <div className="v-separator"></div>
                 </div>
               );
