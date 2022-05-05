@@ -5,12 +5,20 @@ import yearnSdk from "../sdk";
 const Vaults = () => {
   const [loading, setLoading] = useState(false);
   const [vaults, setVaults] = useState([]);
-  const [daiMetadata, setDaiMetadata] = useState({});
+  // const [daiMetadata, setDaiMetadata] = useState({});
+  const [daiVault, setDaiVault] = useState([]);
 
   const getAllVaults = async () => {
     setLoading(true);
     // Get All Vaults
     setVaults(await yearnSdk.vaults.get());
+    setLoading(false);
+  };
+
+  const getDAIVault = async () => {
+    setLoading(true);
+    // Get DAI Vault
+    setDaiVault(await yearnSdk.vaults.get([CONSTANTS.VAULT_ADDRESSES.DAI]));
     setLoading(false);
   };
 
@@ -35,6 +43,7 @@ const Vaults = () => {
   };
 
   useEffect(() => console.log("VAULTS UPDATED", vaults), [vaults]);
+  useEffect(() => console.log("DAI VAULT UPDATED", daiVault), [daiVault]);
 
   return (
     <div>
@@ -52,6 +61,30 @@ const Vaults = () => {
         {!!vaults?.length && (
           <div className="scroll-list">
             {vaults?.map((vault) => {
+              return (
+                <div key={vault.address}>
+                  <p>
+                    Vault: {vault.metadata.displayName} ({vault.symbol})
+                  </p>
+                  <p>APY: {formatAPY(vault.metadata.apy.net_apy)}%</p>
+                  <div className="v-separator"></div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </section>
+
+      <section>
+        <p>Get DAI Vault</p>
+        <button onClick={getDAIVault} disabled={loading}>
+          {loading ? "Loading" : "Get DAI vault"}
+        </button>
+
+        <p>DAI Vault:</p>
+        {!!daiVault?.length && (
+          <div className="scroll-list">
+            {daiVault?.map((vault) => {
               return (
                 <div key={vault.address}>
                   <p>
