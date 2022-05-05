@@ -6,7 +6,8 @@ const Vaults = () => {
   const [loading, setLoading] = useState(false);
   const [vaults, setVaults] = useState([]);
   // const [daiMetadata, setDaiMetadata] = useState({});
-  const [daiVault, setDaiVault] = useState([]);
+  const [daiVault, setDaiVault] = useState({});
+  const [supportedTokens, setSupportedTokens] = useState({});
 
   const getAllVaults = async () => {
     setLoading(true);
@@ -18,7 +19,22 @@ const Vaults = () => {
   const getDAIVault = async () => {
     setLoading(true);
     // Get DAI Vault
-    setDaiVault(await yearnSdk.vaults.get([CONSTANTS.VAULT_ADDRESSES.DAI]));
+    const daiVault = await yearnSdk.vaults.get([CONSTANTS.VAULT_ADDRESSES.DAI]);
+    // Get DAI Token Metadata
+    const daiTokenMetadata = await yearnSdk.tokens.metadata([
+      CONSTANTS.TOKEN_ADDRESSES.DAI,
+    ]);
+    // Merge DAI Vault with DAI Token Metadata
+    // The response is an array so we need to use the first element of the two responses
+    const mergedVault = { ...daiVault[0], tokenMetadata: daiTokenMetadata[0] };
+    setDaiVault(mergedVault);
+    setLoading(false);
+  };
+
+  const getSupportedTokens = async () => {
+    setLoading(true);
+    // Get DAI Vault
+    setSupportedTokens(await yearnSdk.tokens.supported());
     setLoading(false);
   };
 
@@ -44,6 +60,10 @@ const Vaults = () => {
 
   useEffect(() => console.log("VAULTS UPDATED", vaults), [vaults]);
   useEffect(() => console.log("DAI VAULT UPDATED", daiVault), [daiVault]);
+  useEffect(
+    () => console.log("SUPPORTED TOKENS UPDATED", supportedTokens),
+    [supportedTokens]
+  );
 
   return (
     <div>
@@ -76,25 +96,43 @@ const Vaults = () => {
       </section>
 
       <section>
-        <p>Get DAI Vault</p>
+        <p>Get Supported Tokens</p>
+        <button onClick={getSupportedTokens} disabled={loading}>
+          {loading ? "Loading" : "Get supported tokens"}
+        </button>
+
+        <p>Supported Tokens: {supportedTokens?.length}</p>
+        {!!supportedTokens?.length && (
+          <div className="scroll-list">
+            {supportedTokens?.map((token) => {
+              return (
+                <div key={token.address}>
+                  <p>token</p>
+                  <div className="v-separator"></div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </section>
+
+      <section>
+        <p>Get DAI Vault and underlying token metadata (DAI)</p>
         <button onClick={getDAIVault} disabled={loading}>
           {loading ? "Loading" : "Get DAI vault"}
         </button>
 
         <p>DAI Vault:</p>
-        {!!daiVault?.length && (
+        {!!Object.keys(daiVault).length && (
           <div className="scroll-list">
-            {daiVault?.map((vault) => {
-              return (
-                <div key={vault.address}>
-                  <p>
-                    Vault: {vault.metadata.displayName} ({vault.symbol})
-                  </p>
-                  <p>APY: {formatAPY(vault.metadata.apy.net_apy)}%</p>
-                  <div className="v-separator"></div>
-                </div>
-              );
-            })}
+            <div>
+              <p>
+                Vault: {daiVault.metadata?.displayName} ({daiVault.symbol})
+              </p>
+              <p>Description: {daiVault.tokenMetadata.description}</p>
+              <p>APY: {formatAPY(daiVault.metadata?.apy.net_apy)}%</p>
+              <div className="v-separator"></div>
+            </div>
           </div>
         )}
       </section>
