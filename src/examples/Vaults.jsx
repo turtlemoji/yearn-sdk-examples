@@ -15,19 +15,19 @@ const Vaults = () => {
   };
 
   // NOTE The metadata query requires to configure the SDK subgraph
-  const getDaiMetadata = async () => {
-    setLoading(true);
-    try {
-      // Get DAI metadata
-      setDaiMetadata(
-        await yearnSdk.vaults.metadataOf("", [CONSTANTS.VAULT_ADDRESSES.DAI])
-      );
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-      setLoading(false);
-    }
-  };
+  // const getDaiMetadata = async () => {
+  //   setLoading(true);
+  //   try {
+  //     // Get DAI metadata
+  //     setDaiMetadata(
+  //       await yearnSdk.vaults.metadataOf("", [CONSTANTS.VAULT_ADDRESSES.DAI])
+  //     );
+  //     setLoading(false);
+  //   } catch (error) {
+  //     console.error(error);
+  //     setLoading(false);
+  //   }
+  // };
 
   // Helper function to format apy
   const formatAPY = (apy) => {
@@ -66,7 +66,7 @@ const Vaults = () => {
         )}
       </section>
 
-      <section>
+      {/* <section>
         <p>Get DAI Vault Metadata</p>
         <button onClick={getDaiMetadata} disabled={loading}>
           {loading ? "Loading" : "Get Vault metadata"}
@@ -83,7 +83,7 @@ const Vaults = () => {
             })}
           </div>
         )}
-      </section>
+      </section> */}
     </div>
   );
 };
