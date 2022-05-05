@@ -32,7 +32,7 @@ This repository contains a live preview and example usage of the [Yearn SDK](htt
 
 * [src/examples/Balance.jsx](./src/examples/Balance.jsx) -> Example page for using the SDK to list balances of tokens from a wallet
 
-* [*rc/examples/Vaults.jsx](./src/examples/Vaults.jsx) -> Example page for using the SDK to list Yearn Vaults and get detailed information from a single vault
+* [src/examples/Vaults.jsx](./src/examples/Vaults.jsx) -> Example page for using the SDK to list Yearn Vaults and get detailed information from a single vault
 
 * [src/examples/Deposit.jsx](./src/examples/Deposit.jsx) -> Example page for using the SDK to **deposit** a token at a Yearn Vault
 
