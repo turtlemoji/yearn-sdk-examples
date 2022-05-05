@@ -43,15 +43,14 @@ const Withdraw = () => {
     // DAI Token address
     const tokenAddress = CONSTANTS.TOKEN_ADDRESSES.DAI;
 
-    // Amount to deposit (1 DAI), we use ethers to format it
+    // Amount to withdraw (1 DAI), we use ethers to format it
     const amount = ethers.utils.parseUnits("1", 18);
     // Slippage tolerance (1%)
     const slippageTolerance = 0.01;
     // User account address
     const accountAddress = await wallet.getAddress();
-    // Deposit DAI to DAI or FTM to FTM
 
-    // NOTE The deposit will fail if amount > allowance (the token was not approved before)
+    // NOTE The withdraw will fail if amount > allowance (the token was not approved before)
     try {
       const tx = await yearnSdk.vaults.withdraw(
         vaultAddress,
@@ -79,15 +78,14 @@ const Withdraw = () => {
     // DAI Token address
     const tokenAddress = CONSTANTS.TOKEN_ADDRESSES.USDC;
 
-    // Amount to deposit (1 DAI), we use ethers to format it
+    // Amount to withdraw (1 DAI), we use ethers to format it
     const amount = ethers.utils.parseUnits("1", 18);
     // Slippage tolerance (1%)
     const slippageTolerance = 0.01;
     // User account address
     const accountAddress = await wallet.getAddress();
-    // Deposit DAI to DAI or FTM to FTM
 
-    // NOTE The deposit will fail if amount > allowance (the token was not approved before)
+    // NOTE The withdraw will fail if amount > allowance (the token was not approved before)
     try {
       const tx = await yearnSdk.vaults.withdraw(
         vaultAddress,
@@ -132,6 +130,6 @@ const Withdraw = () => {
       </section>
     </div>
   );
-};
+};;
 
 export default Withdraw;
