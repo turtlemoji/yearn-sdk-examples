@@ -17,6 +17,10 @@ const Home = () => (
     <p>In this example, the SDK configuration and init is done on sdk.js</p>
     <p>The wallet logic is inside wallet.js</p>
     <p>All the examples should work with ETHEREUM network.</p>
+    <p>
+      All the results will be console logged so open the console to check RAW
+      data, since the displayed data will be just an example of some properties
+    </p>
   </div>
 );
 

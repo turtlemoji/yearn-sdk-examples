@@ -84,7 +84,9 @@ const Deposit = () => {
       <h2>Deposit</h2>
 
       <section>
-        <p>Deposit to 1 DAI to DAI vault</p>
+        <p>
+          Deposit to 1 DAI to DAI vault (will fail if token is not approved)
+        </p>
         <button onClick={depositToDaiVault} disabled={loading}>
           {loading ? "Loading" : "Deposit DAI"}
         </button>
